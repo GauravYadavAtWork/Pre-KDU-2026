@@ -1,17 +1,33 @@
-# Accepts String, returns its length
-def getLength(str):
-    return len(str)
+class Validator:
+    '''
+    A utility class to validate a password and its confirmation string.
+    '''
+    def __init__(self, password, confirmation):
+        self.password = password
+        self.confirmation = confirmation
 
-# Accepts Two Strings, returns 'True' if both of them are equal
-def isEqual(str1, str2):
-    return str1 == str2
+    def get_password_length(self):
+        return len(self.password)
 
-# Taking inputs
-password = input()
-confirmation = input()
+    def get_confirmation_length(self):
+        return len(self.confirmation)
 
-print('Output:')
-print('Length 1:', getLength(password))
-print('Length 2:', getLength(confirmation))
-print('Lengths match:', (getLength(password) == getLength(confirmation)))
-print('Strings match:', isEqual(password, confirmation))
+    def equal_length(self):
+        return self.get_password_length() == self.get_confirmation_length()
+
+    def is_equal(self):
+        return self.password == self.confirmation
+
+
+def main():
+    password = input()
+    confirmation = input()
+    validator = Validator(password, confirmation)
+    print('Output:')
+    print('Length 1:', validator.get_password_length())
+    print('Length 2:', validator.get_confirmation_length())
+    print('Lengths match:', validator.equal_length())
+    print('Strings match:', validator.is_equal())
+
+if __name__ == "__main__":
+    main()

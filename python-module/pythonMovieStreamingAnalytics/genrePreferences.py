@@ -1,17 +1,23 @@
-# Taking input
-inputString = input()
+class GenrePreference:
+    def __init__(self, lst):
+        self.selections = list(lst)
+        self.genres = set(lst)
+        self.genresFrequency = {}
+        for genre in lst:
+            self.genresFrequency[genre] = self.genresFrequency.get(genre, 0) + 1
 
-# assuming that the inputs are ', ' separated and 10 in count
-selections = inputString.split(', ')  # selections list to store the selections made
 
-# genres set to store unique genre
-genres = set(selections) 
+def main():
+    input_string = input()
+    lst = [v.strip() for v in input_string.split(',')]
 
-# genresFrequency to store the count of each genre as key value pair
-genresFrequency = {}
-for genre in selections:
-    genresFrequency[genre] = genresFrequency.get(genre, 0) + 1
+    genre_preference = GenrePreference(lst)
+    print(genre_preference.selections)
+    print(genre_preference.genres)
+    print(genre_preference.genresFrequency)
 
-print(selections)
-print(genres)
-print(genresFrequency)
+if __name__ == '__main__':
+    try:
+        main()
+    except Exception as e:
+        print("Unexpected error:", e)
