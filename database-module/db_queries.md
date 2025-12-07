@@ -1,10 +1,12 @@
 # **Query 1**
 
+```sql
 select content_id, title, category_name
 from content
 join category
 on content.category_id = category.category_id
 order by content_id;
+```
 
 ![Output 1](outputs/output1.png)
 
@@ -12,9 +14,11 @@ order by content_id;
 
 # **Query 2**
 
+```sql
 select title, rating, views_in_millions as views
 from content
 order by views desc
+```
 
 ![Output 2](outputs/output2.png)
 
@@ -22,11 +26,13 @@ order by views desc
 
 # **Query 3**
 
+```sql
 select category.category_name, avg(content.rating) as average_rating
 from content
 join category
 on content.category_id = category.category_id
 group by content.category_id
+```
 
 ![Output 3](outputs/output3.png)
 
@@ -34,11 +40,13 @@ group by content.category_id
 
 # **Query 4**
 
+```sql
 select title, rating, views_in_millions as views, category_name
 from content
 join category
 on content.category_id = category.category_id
 where content.rating > 8.5 and content.views_in_millions > 100.0
+```
 
 ![Output 4](outputs/output4.png)
 
