@@ -1,5 +1,6 @@
 package com.KDU.BookInventoryApp.repository;
 
+import com.KDU.BookInventoryApp.exception.domin.miscellaneous.DuplicateDataException;
 import com.KDU.BookInventoryApp.model.Book;
 import org.springframework.stereotype.Repository;
 
@@ -36,6 +37,11 @@ public class BookRepository {
     }
 
     public Book insert(String name, String authorName, Double price){
+        for(Book book: books){
+            if(book.getName().equals(name) && book.getAuthorName().equals(authorName)){
+                throw new DuplicateDataException("Duplicate Record exists");
+            }
+        }
         Book book = new Book(name, authorName, price);
         books.add(book);
         return book;

@@ -19,6 +19,12 @@ public class AddNewBookRequest {
 
     public AddNewBookRequest() {}
 
+    public AddNewBookRequest(String name, String authorName, Double price) {
+        this.name = name;
+        this.authorName = authorName;
+        this.price = price;
+    }
+
     public String getName() {
         return name;
     }

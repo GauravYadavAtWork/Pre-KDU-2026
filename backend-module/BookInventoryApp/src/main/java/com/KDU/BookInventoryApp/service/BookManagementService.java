@@ -5,6 +5,8 @@ import com.KDU.BookInventoryApp.dto.request.BookSearchQueryRequest;
 import com.KDU.BookInventoryApp.dto.response.ApiResponse;
 import com.KDU.BookInventoryApp.dto.response.BookResponse;
 import com.KDU.BookInventoryApp.exception.domin.book.BookNotFoundException;
+import com.KDU.BookInventoryApp.exception.domin.book.DuplicateBookFoundException;
+import com.KDU.BookInventoryApp.exception.domin.miscellaneous.DuplicateDataException;
 import com.KDU.BookInventoryApp.model.Book;
 import com.KDU.BookInventoryApp.repository.BookRepository;
 import org.springframework.stereotype.Service;
@@ -21,14 +23,18 @@ public class BookManagementService {
     }
 
     public ApiResponse<BookResponse> addNewBook(AddNewBookRequest request){
-        Book book = bookRepository.insert(request.getName(), request.getAuthorName(), request.getPrice());
-        BookResponse response = new BookResponse(
-                book.getSerialNumber(),
-                book.getName(),
-                book.getAuthorName(),
-                book.getPrice()
-        );
-        return new ApiResponse<>(200, "Book Added Successfully", response);
+        try{
+            Book book = bookRepository.insert(request.getName(), request.getAuthorName(), request.getPrice());
+            BookResponse response = new BookResponse(
+                    book.getSerialNumber(),
+                    book.getName(),
+                    book.getAuthorName(),
+                    book.getPrice()
+            );
+            return new ApiResponse<>(200, "Book Added Successfully", response);
+        }catch (DuplicateDataException exception){
+            throw new DuplicateBookFoundException("Book Already Exists!");
+        }
     }
 
     public ApiResponse<BookResponse> findBookBySerialNumber(int serialNumber){
