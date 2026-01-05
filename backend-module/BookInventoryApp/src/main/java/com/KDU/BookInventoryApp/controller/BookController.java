@@ -33,4 +33,9 @@ public class BookController {
     public ApiResponse<BookResponse> addNewBook(@Valid @RequestBody AddNewBookRequest request){
         return bookManagementService.addNewBook(request);
     }
+
+    @DeleteMapping("/remove/{serialNumber}")
+    public ApiResponse<String> removeBook(@PathVariable int serialNumber){
+        return bookManagementService.remove(serialNumber);
+    }
 }

@@ -1,5 +1,6 @@
 package com.KDU.BookInventoryApp.repository;
 
+import com.KDU.BookInventoryApp.exception.domin.book.BookNotFoundException;
 import com.KDU.BookInventoryApp.exception.domin.miscellaneous.DuplicateDataException;
 import com.KDU.BookInventoryApp.model.Book;
 import org.springframework.stereotype.Repository;
@@ -52,5 +53,14 @@ public class BookRepository {
             if(book.getSerialNumber() == serialNumber) return book;
         }
         return null;
+    }
+
+    public void removeBook(int serialNumber){
+        int indextoremove = -1;
+        for(int i=0;i<books.size();i++){
+            if(books.get(i).getSerialNumber() == serialNumber) indextoremove = i;
+        }
+        if(indextoremove == -1) throw new BookNotFoundException("Book not found");
+        else books.remove(indextoremove);
     }
 }

@@ -68,4 +68,9 @@ public class BookManagementService {
         }
         return new ApiResponse<>(200, "List of Books", mapping);
     }
+
+    public ApiResponse<String> remove(int serialNumber){
+        bookRepository.removeBook(serialNumber);
+        return new ApiResponse<>(200, "Record Deleted Successfully", "Book with id:" + serialNumber + " Deleted");
+    }
 }
