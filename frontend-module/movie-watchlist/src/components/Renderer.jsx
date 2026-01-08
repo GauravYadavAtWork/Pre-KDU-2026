@@ -21,30 +21,33 @@ const Renderer = ({ movies, deleteMovie , clearAll}) => {
   )
 
   return (
-    <div>
+    <>
+    <div className='searchBox'>
       <input
-        placeholder="Search Movies..."
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-      />
-
-      <div>
-        <p>Movies in Watchlist {movies.length}</p>
-        <button onClick={clearAll}>Clear All</button>
-      </div>
-
-      <div>
-        {filteredMovies.map(movie => (
-          <ListItem
-            key={movie.id}
-            id={movie.id}
-            movieName={movie.name}
-            rating={movie.rating}
-            deleteMovie={deleteMovie}
+          id='searchInputBox'
+          placeholder="Search Movies..."
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
           />
-        ))}
+    </div>
+
+    <div className='rendererBox'>
+      <div id='rendererline'>
+        <p>Movies in Watchlist: <span id='counter'> {movies.length} </span></p>
+        <p id='clearAllLink' onClick={clearAll}>Clear All</p>
       </div>
     </div>
+
+    {filteredMovies.map(movie => (
+      <ListItem
+        key={movie.id}
+        id={movie.id}
+        movieName={movie.name}
+        rating={movie.rating}
+        deleteMovie={deleteMovie}
+        />
+        ))}
+    </>
   )
 }
 

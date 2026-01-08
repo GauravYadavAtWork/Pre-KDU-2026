@@ -17,15 +17,18 @@ const AddMovieBox = ({ addMovie }) => {
   }
 
   return (
-    <div>
+    <div className='addMovieContainer'>
       <p>Movie Name</p>
       <input
+        className='movieNameInputBox'
+        placeholder='Enter movie name ...'
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
 
       <p>Rating</p>
       <select
+        id='selectdropdown'
         value={rating}
         onChange={(e) => setRating(e.target.value)}
       >
@@ -37,7 +40,7 @@ const AddMovieBox = ({ addMovie }) => {
         <option value="5">5 star</option>
       </select>
 
-      <button onClick={handleAdd}>
+      <button id='addButton' onClick={handleAdd}>
         + Add to Watchlist
       </button>
     </div>

@@ -1,0 +1,181 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+#root{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(45deg, rgb(57, 28, 95), rgb(90, 26, 185),   rgb(46, 7, 108));
+    height: 150vh;
+    width: 100vw;
+    color: white;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 35vw;
+}
+
+.titleContainer{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    margin: 20px;
+    margin-top: 0px;
+}
+
+.titleheading{
+    font-size: 50px;
+}
+
+.addMovieContainer{
+    width: 100%;
+    background-color: rgba(199, 165, 251, 0.288);
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.addMovieContainer p{
+    margin: 5px 0px;
+}
+
+.movieNameInputBox{
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 12px;
+    background-color: rgba(199, 172, 240, 0.288);
+    color: white;
+}
+
+.movieNameInputBox::placeholder{
+    color: white;
+    opacity: 1;
+}
+
+.movieNameInputBox:focus{
+    outline: none;
+    border: 1px solid white;
+    background-color: rgba(199, 172, 240, 0.288);
+    color: white;
+}
+
+#selectdropdown{
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 12px;
+    background-color: rgba(199, 172, 240, 0.288);
+    color: white;
+}
+
+#selectdropdown:focus{
+    outline: none;
+    border: 1px solid white;
+    background-color: rgba(199, 172, 240, 0.288);
+}
+
+#selectdropdown option{
+    background-color: rgba(199, 172, 240, 0.9);
+    color: white;
+}
+
+#addButton{
+    background-color: rgb(235, 190, 12);
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 15px;
+    border: none;
+}
+
+.searchBox{
+    width: 100%;
+    background-color: rgba(199, 165, 251, 0.288);
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    margin-top: 25px;
+    flex-direction: column;
+}
+
+#searchInputBox{
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 12px;
+    background-color: rgba(199, 172, 240, 0.288);
+    color: white;
+}
+
+#searchInputBox::placeholder{
+    color: white;
+    opacity: 1;
+}
+
+#searchInputBox:focus{
+    outline: none;
+    border: 1px solid white;
+    background-color: rgba(199, 172, 240, 0.288);
+    color: white;
+}
+
+.rendererBox{
+    width: 100%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#rendererline{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#clearAllLink{
+    color: red;
+    text-decoration: underline;
+}
+
+#clearAllLink:hover{
+    cursor: pointer;
+}
+
+#counter{
+    color: rgb(235, 190, 12);
+    font-size: 18px;
+}
+
+
+.listitem{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0px;
+    background-color: rgba(199, 172, 240, 0.288);
+
+    border-radius: 12px;
+}
+
+.deletebutton{
+    padding: 5px 10px;
+    color: white;
+    background-color: rgba(249, 49, 49, 0.822);
+    border: none;
+}
+
+.deletebutton:hover{
+    cursor: pointer;
+}

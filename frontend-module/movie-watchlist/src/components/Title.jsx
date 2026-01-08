@@ -2,8 +2,8 @@ import React from 'react'
 
 const Title = () => {
   return (
-    <div>
-        <div>Movie Watchlist</div>
+    <div className='titleContainer'>
+        <div className='titleheading'>Movie Watchlist</div>
         <div>Track Movies you want to watch!</div>
     </div>
   )

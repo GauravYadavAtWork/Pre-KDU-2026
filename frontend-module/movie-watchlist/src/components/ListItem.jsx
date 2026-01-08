@@ -9,10 +9,10 @@ const ListItem = ({ id, movieName, rating , deleteMovie}) => {
   }
 
   return (
-    <div>
+    <div className='listitem'>
       <div>{movieName}</div>
       <div>⭐ {rating}</div>
-      <button onClick={handleDelete}>Delete</button>
+      <button className='deletebutton' onClick={handleDelete}>Delete</button>
     </div>
   )
 }
