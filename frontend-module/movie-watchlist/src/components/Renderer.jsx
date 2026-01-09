@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import ListItem from './ListItem'
 
-const Renderer = ({ movies, deleteMovie , clearAll}) => {
+const Renderer = ({ movies, deleteMovie , clearAll, watched}) => {
 
   const [searchText, setSearchText] = useState("")
   const [debouncedSearch, setDebouncedSearch] = useState("")
@@ -44,7 +44,9 @@ const Renderer = ({ movies, deleteMovie , clearAll}) => {
         id={movie.id}
         movieName={movie.name}
         rating={movie.rating}
+        isWatched={movie.isWatched}
         deleteMovie={deleteMovie}
+        watched={watched}
         />
         ))}
     </>

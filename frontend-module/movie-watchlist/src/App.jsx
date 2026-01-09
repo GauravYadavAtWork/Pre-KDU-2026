@@ -9,7 +9,8 @@ class MovieItem{
   constructor(name, rating){
     this.name = name;
     this.rating = rating;
-    this.id = uuidv4()
+    this.id = uuidv4();
+    this.isWatched = false;
   }
 }
 
@@ -33,12 +34,23 @@ function App() {
     setMovieList([]);
   }
 
+  function watched(id){
+    const updateMovies = movieList.map(movie => {
+      if(movie.id === id){
+        movie.isWatched = true;
+      }
+      return movie;
+    });
+
+    setMovieList(updateMovies);
+  }  
+
   return (
     <>
       <div className='container'>
         <Title></Title>
         <AddMovieBox addMovie={addMovie}></AddMovieBox>
-        <Renderer movies={movieList} deleteMovie={deleteMovie} clearAll={clearAll}></Renderer>
+        <Renderer movies={movieList} deleteMovie={deleteMovie} clearAll={clearAll} watched={watched}></Renderer>
       </div>
     </>
   )

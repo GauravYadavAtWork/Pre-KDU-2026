@@ -179,3 +179,9 @@ body{
 .deletebutton:hover{
     cursor: pointer;
 }
+
+.watchedmoviename{
+    font-style: italic;
+    color: black;
+    text-decoration: line-through;
+}
