@@ -6,12 +6,14 @@ public class Book {
     private String name;
     private String authorName;
     private Double price;
+    private String ISBN;
 
-    public Book(String name, String authorName, Double price){
+    public Book(String name, String authorName, Double price, String ISBN){
         this.serialNumber = ++totalBooks;
         this.name = name;
         this.authorName = authorName;
         this.price = price;
+        this.ISBN = ISBN;
     }
 
     public int getSerialNumber() {
@@ -28,5 +30,9 @@ public class Book {
 
     public double getPrice() {
         return price;
+    }
+
+    public String getISBN() {
+        return ISBN;
     }
 }

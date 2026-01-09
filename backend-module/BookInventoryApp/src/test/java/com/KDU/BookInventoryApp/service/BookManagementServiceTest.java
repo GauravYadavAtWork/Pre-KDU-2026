@@ -36,18 +36,20 @@ class BookManagementServiceTest {
     void addNewBook_shouldReturnApiResponseWithBookResponse() {
 
         AddNewBookRequest request =
-                new AddNewBookRequest("Clean Code", "Robert C. Martin", 450.0);
+                new AddNewBookRequest("Clean Code", "Robert C. Martin", 450.0, "ISBN11111");
 
         Book savedBook = new Book(
                 "Clean Code",
                 "Robert C. Martin",
-                450.0
+                450.0,
+                "ISBN11111"
         );
 
         when(bookRepository.insert(
                 request.getName(),
                 request.getAuthorName(),
-                request.getPrice()
+                request.getPrice(),
+                request.getISBN()
         )).thenReturn(savedBook);
 
         ApiResponse<BookResponse> response =
@@ -64,19 +66,20 @@ class BookManagementServiceTest {
         assertEquals(450.0, bookResponse.getPrice());
 
         verify(bookRepository, times(1))
-                .insert("Clean Code", "Robert C. Martin", 450.0);
+                .insert("Clean Code", "Robert C. Martin", 450.0, "ISBN11111");
     }
 
     @Test
     void addNewBook_shouldThrowException_whenRepositoryFails() {
 
         AddNewBookRequest request =
-                new AddNewBookRequest("Clean Code", "Robert C. Martin", 450.0);
+                new AddNewBookRequest("Clean Code", "Robert C. Martin", 450.0, "ISBN11111");
 
         when(bookRepository.insert(
                 request.getName(),
                 request.getAuthorName(),
-                request.getPrice()
+                request.getPrice(),
+                request.getISBN()
         )).thenThrow(new RuntimeException("Database failure"));
 
         RuntimeException exception = assertThrows(
@@ -87,19 +90,20 @@ class BookManagementServiceTest {
         assertEquals("Database failure", exception.getMessage());
 
         verify(bookRepository, times(1))
-                .insert("Clean Code", "Robert C. Martin", 450.0);
+                .insert("Clean Code", "Robert C. Martin", 450.0, "ISBN11111");
     }
 
     @Test
     void addNewBook_shouldThrowDuplicateBookFoundException_whenDuplicateDataExists() {
 
         AddNewBookRequest request =
-                new AddNewBookRequest("Clean Code", "Robert C. Martin", 450.0);
+                new AddNewBookRequest("Clean Code", "Robert C. Martin", 450.0, "ISBN11111");
 
         when(bookRepository.insert(
                 request.getName(),
                 request.getAuthorName(),
-                request.getPrice()
+                request.getPrice(),
+                request.getISBN()
         )).thenThrow(new DuplicateDataException("Duplicate record"));
 
         DuplicateBookFoundException exception = assertThrows(
@@ -110,7 +114,7 @@ class BookManagementServiceTest {
         assertEquals("Book Already Exists!", exception.getMessage());
 
         verify(bookRepository, times(1))
-                .insert("Clean Code", "Robert C. Martin", 450.0);
+                .insert("Clean Code", "Robert C. Martin", 450.0, "ISBN11111");
     }
 
     @Test
@@ -123,8 +127,8 @@ class BookManagementServiceTest {
         request.setMaxPrice(1000.0);
 
         List<Book> dummyBooks = List.of(
-                new Book("Clean Code", "Robert C. Martin", 450.0),
-                new Book("Clean Architecture", "Robert C. Martin", 500.0)
+                new Book("Clean Code", "Robert C. Martin", 450.0, "ISBN11111"),
+                new Book("Clean Architecture", "Robert C. Martin", 500.0, "ISBN11112")
         );
 
         when(bookRepository.findAll(

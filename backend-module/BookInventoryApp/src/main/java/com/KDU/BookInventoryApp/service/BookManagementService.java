@@ -24,12 +24,13 @@ public class BookManagementService {
 
     public ApiResponse<BookResponse> addNewBook(AddNewBookRequest request){
         try{
-            Book book = bookRepository.insert(request.getName(), request.getAuthorName(), request.getPrice());
+            Book book = bookRepository.insert(request.getName(), request.getAuthorName(), request.getPrice(), request.getISBN());
             BookResponse response = new BookResponse(
                     book.getSerialNumber(),
                     book.getName(),
                     book.getAuthorName(),
-                    book.getPrice()
+                    book.getPrice(),
+                    book.getISBN()
             );
             return new ApiResponse<>(200, "Book Added Successfully", response);
         }catch (DuplicateDataException exception){
@@ -44,7 +45,21 @@ public class BookManagementService {
                 book.getSerialNumber(),
                 book.getName(),
                 book.getAuthorName(),
-                book.getPrice()
+                book.getPrice(),
+                book.getISBN()
+        );
+        return new ApiResponse<>(200, "book found", response);
+    }
+
+    public ApiResponse<BookResponse> findBookByISBN(String ISBN){
+        Book book = bookRepository.findByISBN(ISBN);
+        if(book == null) throw new BookNotFoundException("Book with ISBN " + ISBN + " not found");
+        BookResponse response = new BookResponse(
+                book.getSerialNumber(),
+                book.getName(),
+                book.getAuthorName(),
+                book.getPrice(),
+                book.getISBN()
         );
         return new ApiResponse<>(200, "book found", response);
     }
@@ -63,7 +78,8 @@ public class BookManagementService {
                     book.getSerialNumber(),
                     book.getName(),
                     book.getAuthorName(),
-                    book.getPrice())
+                    book.getPrice(),
+                    book.getISBN())
             );
         }
         return new ApiResponse<>(200, "List of Books", mapping);

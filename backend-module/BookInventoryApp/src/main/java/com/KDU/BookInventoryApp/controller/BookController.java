@@ -29,6 +29,11 @@ public class BookController {
         return bookManagementService.findBookBySerialNumber(serialNumber);
     }
 
+    @GetMapping("/find/ISBN/{ISBN}")
+    public ApiResponse<BookResponse> findBookByISBN(@PathVariable String ISBN){
+        return bookManagementService.findBookByISBN(ISBN);
+    }
+
     @PostMapping("/add")
     public ApiResponse<BookResponse> addNewBook(@Valid @RequestBody AddNewBookRequest request){
         return bookManagementService.addNewBook(request);

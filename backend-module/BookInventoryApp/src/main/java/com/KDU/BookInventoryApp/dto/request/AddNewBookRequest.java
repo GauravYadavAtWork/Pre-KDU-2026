@@ -17,12 +17,17 @@ public class AddNewBookRequest {
     @Positive(message = "Price must be greater than zero")
     private Double price;
 
+    @NotBlank(message = "ISBN is required")
+    @Size(min = 9, max = 9, message = "9 Length ISBN code is required")
+    private String ISBN;
+
     public AddNewBookRequest() {}
 
-    public AddNewBookRequest(String name, String authorName, Double price) {
+    public AddNewBookRequest(String name, String authorName, Double price, String ISBN) {
         this.name = name;
         this.authorName = authorName;
         this.price = price;
+        this.ISBN = ISBN;
     }
 
     public String getName() {
@@ -35,5 +40,9 @@ public class AddNewBookRequest {
 
     public Double getPrice() {
         return price;
+    }
+
+    public String getISBN(){
+        return ISBN;
     }
 }
